@@ -1,0 +1,34 @@
+include = [
+  "/opt/acmed/acmed.toml"
+]
+
+[[hook]]
+name = "dns-01-rfc-2136"
+type = ["challenge-dns-01", "challenge-dns-01-clean"]
+allow_failure = false
+cmd = "/usr/local/bin/acmed-hook-rfc2136"
+args = [
+  "--config",
+  "/opt/acmed/acmed-hook-rfc2136.toml",
+  "--identifier",
+  "{{ identifier }}",
+  "--proof",
+  "{{ proof }}",
+  "{{ 'unset' if is_clean_hook else 'set' }}"
+]
+
+[[hook]]
+name = "ssh-send"
+type = ["post-operation"]
+allow_failure = false
+cmd = "/usr/local/bin/acmed-send-cert"
+args = [
+  "--certificate",
+  "{{ certificate_path }}",
+  "--key",
+  "{{ private_key_path }}",
+  "--user",
+  "{{ env.SSH_USER }}",
+  "--host",
+  "{{ identifiers[0] }}" # Use the first identifier and pray it works :)
+]

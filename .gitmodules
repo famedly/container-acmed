@@ -1,0 +1,9 @@
+[submodule "modules/rfc2136"]
+	path = modules/rfc2136
+	url = https://github.com/famedly/acmed-hook-rfc2136.git
+[submodule "modules/ssh"]
+	path = modules/ssh
+	url = https://github.com/famedly/acmed-hook-ssh.git
+[submodule "modules/acmed"]
+	path = modules/acmed
+	url = https://github.com/breard-r/acmed.git
