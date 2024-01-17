@@ -9,7 +9,7 @@ allow_failure = false
 cmd = "/usr/local/bin/acmed-hook-rfc2136"
 args = [
   "--config",
-  "/opt/acmed/acmed-hook-rfc2136.toml",
+  "{{ env.ACMED_HOOK_RFC2136_CONFIG_FILE }}",
   "--identifier",
   "{{ identifier }}",
   "--proof",
@@ -28,7 +28,7 @@ args = [
   "--key",
   "{{ private_key_path }}",
   "--user",
-  "{{ env.SSH_USER }}",
+  "{{ env.ACMED_HOOK_SSH_USER }}",
   "--host",
   "{{ identifiers[0] }}" # Use the first identifier and pray it works :)
 ]
